@@ -38,33 +38,21 @@ where date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and
 Ответ:
 
 1. Использование оператора distinct, он ищет по всему переченю текстовых значений
-2. Использование inner join, то есть происходит проверка всех значений со всеми.
+2. Нет join с таблицей f.
 
 Скорректированный скрипт:
 
-select concat(c.last_name, ' ', c.first_name) , SUM(p.amount)  from payment p
-left outer join rental r on p.payment_date = r.rental_date 
-LEFT OUTER join customer c on r.customer_id = c.customer_id
-LEFT outer join inventory i on i.inventory_id = r.inventory_id
-where date(p.payment_date) = '2005-07-30'
+select concat(c.last_name, ' ', c.first_name), sum(p.amount) over (partition by c.customer_id, f.title)
+from payment p, rental r, customer c, inventory i, film f
+where date(p.payment_date) = '2005-07-30' 
+and p.payment_date = r.rental_date 
+and r.customer_id = c.customer_id 
+and i.inventory_id = r.inventory_id
+and i.film_id = f.film_id 
 group by concat(c.last_name, ' ', c.first_name)
 
-Выполняется за 23 ms
-
-![alt text](https://github.com/vmmaltsev/screenshot2/blob/main/Screenshot_31.png)
-
-План выполнения запроса 
-
-![alt text](https://github.com/vmmaltsev/screenshot2/blob/main/Screenshot_32.png)
 
 
-Запрос из условия задание ыполнется в среднем 5 секунд
-
-![alt text](https://github.com/vmmaltsev/screenshot2/blob/main/Screenshot_33.png)
-
-План выполнения запроса
-
-![alt text](https://github.com/vmmaltsev/screenshot2/blob/main/Screenshot_34.png)
 
 
 
