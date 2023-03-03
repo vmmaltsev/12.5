@@ -37,9 +37,8 @@ where date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and
 
 Ответ:
 
-![EXPLAYN ANALYZE с новым индексом](https://github.com/vmmaltsev/screenshot2/blob/main/Screenshot_35.png)
+![1](https://github.com/vmmaltsev/screenshot2/blob/main/Screenshot_37.png)
 
-![EXPLAYN ANALYZE моего запроса с индексами базы](https://github.com/vmmaltsev/screenshot2/blob/main/Screenshot_36.png)
 
 
 
