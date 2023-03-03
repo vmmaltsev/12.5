@@ -39,7 +39,7 @@ where date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and
 
 ![1](https://github.com/vmmaltsev/screenshot2/blob/main/Screenshot_38.png)
 
-![1](https://github.com/vmmaltsev/12.5/blob/main/explayn%20analyze.txt)
+![explayn analyze](https://github.com/vmmaltsev/12.5/blob/main/explayn%20analyze.txt)
 
 
 
